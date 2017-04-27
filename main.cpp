@@ -5,6 +5,8 @@
 #include <cstdlib>
 using namespace std;
 
+Matrix calculWeightMatrix(Matrix * vectors,int n);
+
 //check if the input file exist or not
 bool exist(char * name)
 {
@@ -70,6 +72,9 @@ Matrix * askManual(){
     }
     correct = false;
   }
+  
+  Matrix weight = calculWeightMatrix(vectors,n);
+  
   return vectors;
 }
 
@@ -107,6 +112,14 @@ Matrix * askMode(){
     return askManual();
   else //if(mode == 'f')
     return askFile();
+}
+
+Matrix calculWeightMatrix(Matrix * vectors,int n){
+  Matrix w(n,n); //creating the weight matrix
+  /*
+    TODO CALCULS
+   */
+  return w;
 }
 
 int main()
