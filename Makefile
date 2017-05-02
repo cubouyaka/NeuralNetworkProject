@@ -1,4 +1,4 @@
-SOURCES = main.cpp matrix.cpp matrix.h
+SOURCES = main.cpp matrix.cpp matrix.h utils.cpp utils.h
 CC = g++
 FLAGS = -Wall
 EXEC = main
