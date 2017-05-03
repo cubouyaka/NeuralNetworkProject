@@ -47,23 +47,24 @@ Matrix * askManual(int *n, int *m){
   std::string answer;
   int tmp;
 
-  for(int i = 0; i < (*m); i++){
-    while(!correct){
+  while(!correct){
+    for(int i = 0; i < (*m); i++){
       new (&(vectors[i])) Matrix((*n),1);
       cout << "Vector n-" << i+1 << ": (enter values one by one)"<<endl;
       for(int j = 0; j < (*n); j++){
 	cin >> tmp;
 	vectors[i].setValue(j,0,tmp);
       }
-      cout << "Vector n-" << i+1 << ", is it correct ? (y/n)" << endl;
-      vectors[i].show();
-      cin >> answer;
-      if(!answer.compare("yes") || !answer.compare("y"))
-	correct = true;
     }
-    correct = false;
+    cout << "Is it correct ? (y/n)" << endl;
+    showMany(vectors,n,m);
+    cin >> answer;
+    if(!answer.compare("yes") || !answer.compare("y"))
+      correct = true;
   }
   
+
+
   Matrix weight = calculWeightMatrix(vectors,n);
   
   return vectors;
@@ -110,14 +111,16 @@ Matrix calculWeightMatrix(Matrix * vectors,int * n){
 }
 
 void showMany(Matrix * vectors, int * n, int * m){
-  int s = 16;
+  int s = 12;
   for(int i = 0; i < (*m); i++)
     cout << "Vector n-" << i<< setw(s);
-  cout << endl << setfill('-') << setw(15*(*m)) << "-" << endl;
+  cout << endl << setfill('-') << setw(s*(*m)) << "-" << endl;
   cout << setfill(' ');  //fill with spaces
   for(int j = 0; j < (*n); j++){
-    for(int k = 0; k < (*m); k++)
-      cout <<setw(s)<<left<<vectors[k].matrix[j][0];
+    for(int k = 0; k < (*m); k++){
+      cout <<setw(s-5)<<vectors[k].matrix[j][0];
+      cout<<setw(s-5) <<" ";
+    }
     cout << endl;
   }
 }

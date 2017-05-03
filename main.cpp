@@ -5,8 +5,9 @@ int main()
   
   //// READ THE FILE AND CONSTRUCT VECTORS ////
   int * n = (int *)(malloc(sizeof(int*)));
-  int * m;
+  int * m = (int *)(malloc(sizeof(int*)));
   Matrix * vectors = askMode(n,m);
+  showMany(vectors,n,m);
   /*
 
   Matrix test1(3,3);
