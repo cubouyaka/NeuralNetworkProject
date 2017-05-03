@@ -3,18 +3,18 @@ class Matrix {
 
  public:
 
-  int ** matrix;
+  double ** matrix;
   int n; //number of rows
   int m; //number of columns
  
-  //---------CONSTRUCTORS----------
+  ///////// CONSTRUCTORS /////////
   Matrix() {} //default constructor
   Matrix(int n, int m); //Creates a matrix nxm
 
-  //---------DESTRUCTOR-----------
+  ///////// DESTRUCTOR ///////////
   ~Matrix();
 
-  //---------METHODS--------------
-  void setValue(int i, int j, int value); //set the value X_i,j = value
+  ///////// METHODS //////////////
+  void setValue(int i, int j, double value); //set the value X_i,j = value
   void show(); // print the matrix
 };

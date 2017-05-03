@@ -8,6 +8,9 @@ int main()
   int * m = (int *)(malloc(sizeof(int*)));
   Matrix * vectors = askMode(n,m);
   showMany(vectors,n,m);
+  Matrix w = calculWeightMatrix(vectors,n,m);
+  w.show();
+
   /*
 
   Matrix test1(3,3);
