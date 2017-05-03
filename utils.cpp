@@ -17,7 +17,7 @@ Matrix * askMode(int *n, int *m){
   }while(!b);
   if(mode == 'm')
     return askManual(n,m);
-  else //if(mode == 'f')
+  else
     return askFile(n,m);
 }
 
@@ -75,7 +75,6 @@ int askValue(int i, int j){
 }
 
 Matrix * loadFile(char * name, int *n, int *m){
-  //int n,m;
   ifstream  file;
   file.open(name, ios::in);
 
@@ -91,11 +90,12 @@ Matrix * loadFile(char * name, int *n, int *m){
   }
 
   file.close();
+  showMany(vectors,n,m);
+
   return vectors;
 }
 
-bool exist(char * name)
-{
+bool exist(char * name){
   ifstream file(name);
   if(file.good()){
     file.close();
@@ -110,8 +110,6 @@ bool exist(char * name)
 
 Matrix calculWeightMatrix(Matrix * vectors,int * n,int * m){
   Matrix w((*n),(*n)); //creating the weight matrix
-  cout << "ICI"<<endl;
-  //TODO CALCULS
   for(int i = 0; i < *n; i++)
     for(int j = 0; j < *n; j++)
       w.setValue(i,j,hebbRule(vectors,i,j,n,m));
@@ -127,10 +125,54 @@ double hebbRule(Matrix * vectors, int i, int j, int *n, int * m){
   return result/(*n);
 }
 
+void recognition(Matrix * vectors,int *n, int *m){ 
+
+  Matrix weight = calculWeightMatrix(vectors,n,m);
+  cout << "\n--WEIGHT MATRIX--";
+  weight.show();
+  
+  Matrix * u = (Matrix *) malloc((*m) * sizeof(Matrix));
+  Matrix * v = (Matrix *) malloc((*m) * sizeof(Matrix));
+
+  for(int i = 0; i < (*m); i++){
+    new (&(u[i])) Matrix((*n),1);
+    new (&(v[i])) Matrix((*n),1);
+    u[i] = multiplication(weight,vectors[i]);
+    v[i] = u[i].g();
+  }
+  u[0].show();
+  u[1].show();
+  u[2].show();
+  cout << "\n--VECTORS U--\n";
+  showMany(u,n,m);
+  cout << "\n--VECTORS V--\n";
+  showMany(v,n,m);
+
+  int stable = 1;
+  for(int j = 0; j < *m; j++)
+    if(!(v[j] == vectors[j]))
+      stable = 0;
+
+  if(stable)
+    cout << "STABLE !!\n";
+
+}
+
+Matrix multiplication(Matrix const& a, Matrix const& b){
+  Matrix result(a.n,b.m);
+  for(int i = 0; i < a.n; ++i)
+    for(int j = 0; j < b.m; ++j)
+      for(int k = 0; k < b.n; ++k)
+	result.matrix[i][j] += a.matrix[i][k] * b.matrix[k][j];
+  result.matrix[0][0] = 14;
+  return result;
+}
+
 ////// OTHERS FUNCTIONS /////////
 
 void showMany(Matrix * vectors, int * n, int * m){
   int s = 12;
+  cout << setfill(' ');  //fill with spaces
   for(int i = 0; i < (*m); i++)
     cout << "Vector n-" << i<< setw(s);
   cout << endl << setfill('-') << setw(s*(*m)) << "-" << endl;

@@ -19,13 +19,17 @@ int askValue(int i, int j);
 Matrix * loadFile(char * name, int *n, int *m);
 //check if the input file exist or not
 bool exist(char * name);
-//calcul the weight matrix
 
 ////// CALCULS FUNCTIONS ////////
 
+//calcul the weight matrix
 Matrix calculWeightMatrix(Matrix * vectors,int *n,int *m);
 //calcul (1/N)*[sum of x(s,i)*x(s,j) for s=1 to s=m]
 double hebbRule(Matrix * vectors, int i, int j,int *n, int * m);
+//Recognition calcul to find stability or double-cycle
+void recognition(Matrix * vectors,int *n, int *m);
+//Matrix multiplication
+Matrix multiplication(Matrix const& a, Matrix const& b);
 
 ////// OTHERS FUNCTIONS /////////
 

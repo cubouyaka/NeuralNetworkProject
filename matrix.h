@@ -1,4 +1,5 @@
 #include <iomanip>
+#include <stdlib.h>
 class Matrix {
 
  public:
@@ -14,7 +15,11 @@ class Matrix {
   ///////// DESTRUCTOR ///////////
   ~Matrix();
 
+  ///////// OPERATORS ////////////
+  bool operator==(Matrix const& a);
+
   ///////// METHODS //////////////
   void setValue(int i, int j, double value); //set the value X_i,j = value
   void show(); // print the matrix
+  Matrix g(); //Recognition function g
 };

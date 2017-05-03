@@ -1,54 +1,35 @@
 #include "utils.h"
 
-int main()
-{
-  
-  //// READ THE FILE AND CONSTRUCT VECTORS ////
+int main(){
+
   int * n = (int *)(malloc(sizeof(int*)));
   int * m = (int *)(malloc(sizeof(int*)));
   Matrix * vectors = askMode(n,m);
-  showMany(vectors,n,m);
-  Matrix w = calculWeightMatrix(vectors,n,m);
-  w.show();
 
+  recognition(vectors,n,m);
+  //Matrix test(3,3);
+  //test.show();
   /*
+  Matrix w = calculWeightMatrix(vectors,n,m);
+  std::cout << "\n--WEIGHT MATRIX--";
+  w.show();
+  
+  Matrix a(2,2);
+  Matrix b(2,2);
+  a.setValue(0,0,2);
+  a.setValue(0,1,2);
+  a.setValue(1,1,2);
+  a.setValue(1,0,2);
+  b.setValue(1,0,-1);
+  b.setValue(1,1,-2);
+  b.setValue(0,1,-2);
+  b.setValue(0,0,-1);
 
-  Matrix test1(3,3);
-  test1.setValue(0,0,1);
-  test1.setValue(0,1,1);
-  test1.setValue(1,1,1);
-  test1.setValue(1,0,1);
-  test1.setValue(2,1,1);
-  test1.setValue(2,2,1);
-  test1.setValue(1,2,1);
-  test1.setValue(2,0,1);
-  test1.setValue(0,2,1);
+  a.show();
+  b.show();
 
-  Matrix test(3,3);
-  test.setValue(0,0,1);
-  test.setValue(0,1,1);
-  test.setValue(1,1,1);
-  test.setValue(1,0,1);
-  test.setValue(2,1,1);
-  test.setValue(2,2,1);
-  test.setValue(1,2,1);
-  test.setValue(2,0,1);
-  test.setValue(0,2,1);
-
-  Matrix test2(3,3);
-  test2.setValue(0,0,1);
-  test2.setValue(0,1,1);
-  test2.setValue(1,1,1);
-  test2.setValue(1,0,1);
-  test2.setValue(2,1,1);
-  test2.setValue(2,2,1);
-  test2.setValue(1,2,1);
-  test2.setValue(2,0,1);
-  test2.setValue(0,2,1);
-
-  test.show();
-  test1.show();
-  test2.show();
-  */
+  Matrix mm = a*b;
+  mm.show();
+*/
   return 0;
 }
