@@ -140,21 +140,33 @@ void recognition(Matrix * vectors,int *n, int *m){
     u[i] = multiplication(weight,vectors[i]);
     v[i] = u[i].g();
   }
-  u[0].show();
-  u[1].show();
-  u[2].show();
-  cout << "\n--VECTORS U--\n";
+
+  cout << "\n--VECTORS U--\n\n";
   showMany(u,n,m);
-  cout << "\n--VECTORS V--\n";
+  cout << "\n--VECTORS V--\n\n";
   showMany(v,n,m);
 
   int stable = 1;
+  int double_c = 1; //if there is a double cycle
   for(int j = 0; j < *m; j++)
     if(!(v[j] == vectors[j]))
       stable = 0;
-
+  
   if(stable)
     cout << "STABLE !!\n";
+  else{
+    Matrix * w = (Matrix *) malloc((*m) * sizeof(Matrix));
+    for(int k = 0; k < (*m); k++){
+      new (&(w[k])) Matrix((*n),1);
+      w[k] = multiplication(weight,u[k]);
+    }
+    for(int l = 0; l < *m; l++)
+      if(!(w[l] == u[l]))
+	double_c = 0;
+
+    if(double_c)
+      cout << "Double cycle !\n";
+  }
 
 }
 
@@ -164,7 +176,6 @@ Matrix multiplication(Matrix const& a, Matrix const& b){
     for(int j = 0; j < b.m; ++j)
       for(int k = 0; k < b.n; ++k)
 	result.matrix[i][j] += a.matrix[i][k] * b.matrix[k][j];
-  result.matrix[0][0] = 14;
   return result;
 }
 

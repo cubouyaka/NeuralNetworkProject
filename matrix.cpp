@@ -30,7 +30,7 @@ void Matrix::show(){
   cout << setfill(' ');
   for (int i = 0; i < n; ++i){
     for (int j = 0; j < m; ++j)
-      cout << setw(10) <<setprecision(3) << matrix[i][j];
+      cout << setw(10) <<setprecision(4) << matrix[i][j];
     cout << endl;
   }
   cout << setfill('-') << setw(10*m) << "-" << endl;
@@ -44,6 +44,14 @@ bool Matrix::operator==(Matrix const& a){
       if(a.matrix[i][j] != this->matrix[i][j])
 	return false;
   return true;
+}
+
+void Matrix::operator=(Matrix const& a){
+  this->n = a.n;
+  this->m = a.m;
+  for(int i = 0; i < a.n; ++i)
+    for(int j = 0; j < a.m; ++j)
+      this->matrix[i][j] = a.matrix[i][j];
 }
 
 Matrix Matrix::g(){

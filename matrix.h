@@ -17,6 +17,7 @@ class Matrix {
 
   ///////// OPERATORS ////////////
   bool operator==(Matrix const& a);
+  void operator=(Matrix const& a);
 
   ///////// METHODS //////////////
   void setValue(int i, int j, double value); //set the value X_i,j = value
