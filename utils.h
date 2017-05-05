@@ -28,8 +28,6 @@ Matrix calculWeightMatrix(Matrix * vectors,int *n,int *m);
 double hebbRule(Matrix * vectors, int i, int j,int *n, int * m);
 //Recognition calcul to find stability or double-cycle
 void recognition(Matrix * vectors,int *n, int *m);
-//Matrix multiplication
-Matrix multiplication(Matrix const& a, Matrix const& b);
 
 ////// OTHERS FUNCTIONS /////////
 

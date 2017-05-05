@@ -18,6 +18,8 @@ class Matrix {
   ///////// OPERATORS ////////////
   bool operator==(Matrix const& a);
   void operator=(Matrix const& a);
+  Matrix operator*(Matrix const& a); //Matrix multiplication
+  Matrix operator+(Matrix const& a); //Matrix addition
 
   ///////// METHODS //////////////
   void setValue(int i, int j, double value); //set the value X_i,j = value

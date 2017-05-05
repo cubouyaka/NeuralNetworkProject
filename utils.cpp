@@ -137,7 +137,7 @@ void recognition(Matrix * vectors,int *n, int *m){
   for(int i = 0; i < (*m); i++){
     new (&(u[i])) Matrix((*n),1);
     new (&(v[i])) Matrix((*n),1);
-    u[i] = multiplication(weight,vectors[i]);
+    u[i] = weight * vectors[i];
     v[i] = u[i].g();
   }
 
@@ -158,7 +158,7 @@ void recognition(Matrix * vectors,int *n, int *m){
     Matrix * w = (Matrix *) malloc((*m) * sizeof(Matrix));
     for(int k = 0; k < (*m); k++){
       new (&(w[k])) Matrix((*n),1);
-      w[k] = multiplication(weight,u[k]);
+      w[k] = weight * u[k];
     }
     for(int l = 0; l < *m; l++)
       if(!(w[l] == u[l]))
@@ -168,15 +168,6 @@ void recognition(Matrix * vectors,int *n, int *m){
       cout << "Double cycle !\n";
   }
 
-}
-
-Matrix multiplication(Matrix const& a, Matrix const& b){
-  Matrix result(a.n,b.m);
-  for(int i = 0; i < a.n; ++i)
-    for(int j = 0; j < b.m; ++j)
-      for(int k = 0; k < b.n; ++k)
-	result.matrix[i][j] += a.matrix[i][k] * b.matrix[k][j];
-  return result;
 }
 
 ////// OTHERS FUNCTIONS /////////

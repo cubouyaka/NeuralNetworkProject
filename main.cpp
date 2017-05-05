@@ -14,7 +14,6 @@ int main(){
   std::cout << "\n--WEIGHT MATRIX--";
   w.show();
 
-  /*
   Matrix a(2,3);
   Matrix b(3,2);
   a.setValue(0,0,2);
