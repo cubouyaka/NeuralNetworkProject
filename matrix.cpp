@@ -55,6 +55,19 @@ void Matrix::operator=(Matrix const& a){
 }
 
 Matrix Matrix::operator*(Matrix const& a){
+  if((this->m != a.n)){
+    cout<<"ERROR (Matrix Multiplication): you try to multiply two matrices of different sizes\n";
+    exit (EXIT_FAILURE);
+  }
+  Matrix result(this->n,a.m);
+  for(int i = 0; i < this->n; ++i)
+    for(int j = 0; j < a.m; ++j)
+       for(int k = 0; k < a.n; ++k)
+	result.matrix[i][j] = this->matrix[i][k] * a.matrix[k][j];
+  return result;
+}
+
+Matrix Matrix::operator+(Matrix const& a){
   if((this->n != a.n) || (this->m != a.m)){
     cout<<"ERROR (Matrix Addition): you try to add two matrices of different sizes\n";
     exit (EXIT_FAILURE);
