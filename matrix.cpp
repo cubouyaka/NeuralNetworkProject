@@ -63,7 +63,7 @@ Matrix Matrix::operator*(Matrix const& a){
   for(int i = 0; i < this->n; ++i)
     for(int j = 0; j < a.m; ++j)
        for(int k = 0; k < a.n; ++k)
-	result.matrix[i][j] = this->matrix[i][k] * a.matrix[k][j];
+	result.matrix[i][j] += this->matrix[i][k] * a.matrix[k][j];
   return result;
 }
 
@@ -83,7 +83,7 @@ Matrix Matrix::g(){
   Matrix result(n,m);
   for(int i = 0; i < this->n; i++)
     for(int j = 0; j < this->m; j++)
-      if(this->matrix[i][j] > 0)
+      if(this->matrix[i][j] >= 0)
 	result.matrix[i][j] = 1;
       else
 	result.matrix[i][j] = -1;
